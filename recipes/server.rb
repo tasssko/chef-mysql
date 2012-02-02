@@ -81,7 +81,7 @@ unless Chef::Config[:solo]
   end
 end
 
-grants_path = "/opt/skystack/bootstrapper/etc/grants.sql"
+grants_path = "/opt/skystack/etc/grants.sql"
 
 begin
   t = resources(:template => "#{grants_path}")
@@ -104,7 +104,7 @@ execute "mysql-install-privileges" do
   subscribes :run, resources(:template => "#{grants_path}"), :immediately
 end
 
-mysql_conf = "/opt/skystack/bootstrapper/etc/.mysql.root.shadow"
+mysql_conf = "/opt/skystack/etc/.mysql.root.shadow"
 
 ruby "save_password" do
   interpreter "ruby"
